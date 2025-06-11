@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mood_sync/widgets/mood_sync_nav_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -38,11 +39,14 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // TODO: Implement quick mood entry
+      bottomNavigationBar: MoodSyncNavBar(
+        currentIndex: 0,
+        onTabSelected: (index) {
+          // TODO: Handle tab navigation
         },
-        child: const Icon(Icons.add),
+        onFabPressed: () {
+          // TODO: Handle FAB action (quick mood entry)
+        },
       ),
     );
   }

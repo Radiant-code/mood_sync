@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Mood Sync',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
