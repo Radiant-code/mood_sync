@@ -39,4 +39,11 @@ class AppColors {
       Color(0xFF232325); // Subtle dark for progress bar background
   static const Color progressBarFg =
       Color(0xFF6CF4A1); // Neon green for progress bar foreground
+
+  // Progress bar gradient colors for different emotions
+  static const Color progressHappy = Color(0xFFFCE83A); // Neon yellow
+  static const Color progressContent = Color(0xFF4ADE80); // Soft green
+  static const Color progressCalm = Color(0xFF56CFFF); // Electric blue
+  static const Color progressSad = Color(0xFFBB86FC); // Neon purple
+  static const Color progressGrateful = Color(0xFFFF85B3); // Neon pink
 }

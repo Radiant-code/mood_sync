@@ -111,7 +111,17 @@ class CurrentStateCard extends StatelessWidget {
                   Container(
                     height: 8,
                     width: MediaQuery.of(context).size.width * progress,
-                    color: AppColors.progressBarFg,
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          AppColors.progressHappy,
+                          AppColors.progressCalm,
+                          AppColors.progressContent,
+                        ],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      ),
+                    ),
                   ),
                 ],
               ),
