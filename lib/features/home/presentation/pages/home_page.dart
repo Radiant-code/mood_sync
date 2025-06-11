@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mood_sync/widgets/mood_sync_nav_bar.dart';
+import 'package:mood_sync/widgets/mood_sync_header.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -7,16 +8,16 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Mood Sync'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              // TODO: Implement settings navigation
-            },
-          ),
-        ],
+      appBar: MoodSyncHeader(
+        title: 'Mood Sync',
+        greeting: 'Good afternoon',
+        date: 'Wednesday, Jun 11',
+        onSettings: () {
+          // TODO: Implement settings navigation
+        },
+        onNotification: () {
+          // TODO: Implement notification navigation
+        },
       ),
       body: Center(
         child: Column(
