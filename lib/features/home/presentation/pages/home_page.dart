@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mood_sync/widgets/mood_sync_nav_bar.dart';
 import 'package:mood_sync/widgets/mood_sync_header.dart';
+import '../widgets/reflection_prompt_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -19,24 +20,13 @@ class HomePage extends StatelessWidget {
           // TODO: Implement notification navigation
         },
       ),
-      body: Center(
+      body: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text(
-              'Welcome to Mood Sync',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // TODO: Implement mood tracking
-              },
-              child: const Text('Track Your Mood'),
-            ),
+            ReflectionPromptCard(),
+            // TODO: Add other homepage cards below
           ],
         ),
       ),
