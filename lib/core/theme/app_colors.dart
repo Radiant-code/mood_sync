@@ -31,4 +31,12 @@ class AppColors {
   static const Color dark = background; // For legacy code
   static const Color fabGradientEnd = neonPink; // For FAB gradients
   static const Color selected = neonPurple; // For selected nav/icon
+
+  // New colors for the Current State card
+  static const Color stateContent =
+      Color(0xFF4ADE80); // Soft green for 'Content' state (emoji bg)
+  static const Color progressBarBg =
+      Color(0xFF232325); // Subtle dark for progress bar background
+  static const Color progressBarFg =
+      Color(0xFF6CF4A1); // Neon green for progress bar foreground
 }

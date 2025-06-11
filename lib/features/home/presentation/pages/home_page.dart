@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mood_sync/widgets/mood_sync_nav_bar.dart';
 import 'package:mood_sync/widgets/mood_sync_header.dart';
 import '../widgets/reflection_prompt_card.dart';
+import '../widgets/current_state_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -26,6 +27,14 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ReflectionPromptCard(),
+            CurrentStateCard(
+              stateName: 'Content',
+              subtitle: 'Feeling balanced',
+              timeAgo: '2h ago',
+              progress: 0.7,
+              supportingText:
+                  "You've been maintaining a steady emotional state today",
+            ),
             // TODO: Add other homepage cards below
           ],
         ),
