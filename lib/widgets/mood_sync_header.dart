@@ -83,18 +83,18 @@ class MoodSyncHeader extends StatelessWidget implements PreferredSizeWidget {
             const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.only(left: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
                     greeting,
                     style: theme.textTheme.headlineMedium?.copyWith(
                       color: theme.colorScheme.onSurface,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w500,
                       fontSize: 18,
                     ),
                   ),
-                  const SizedBox(height: 2),
+                  const SizedBox(width: 10),
                   Text(
                     date,
                     style: theme.textTheme.bodyMedium?.copyWith(

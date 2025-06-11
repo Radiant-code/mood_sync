@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: MoodSyncHeader(
         title: 'Mood Sync',
-        greeting: 'Good afternoon',
+        greeting: 'Hi, Rayaan!',
         date: 'Wednesday, Jun 11',
         onSettings: () {
           // TODO: Implement settings navigation
