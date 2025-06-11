@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mood_sync/core/theme/app_colors.dart';
 
 /// A card widget prompting the user to reflect on their current feelings.
 ///
@@ -11,10 +12,10 @@ class ReflectionPromptCard extends StatelessWidget {
     final theme = Theme.of(context);
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFF1C1C1E),
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: const Color(0xFF2C2C2E),
+          color: AppColors.divider,
           width: 1.2,
         ),
       ),
@@ -31,8 +32,8 @@ class ReflectionPromptCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 gradient: LinearGradient(
                   colors: [
-                    theme.colorScheme.primary,
-                    theme.colorScheme.secondary,
+                    AppColors.neonPurple,
+                    AppColors.neonPink,
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -67,7 +68,7 @@ class ReflectionPromptCard extends StatelessWidget {
                 label: const Text('Reflect Now',
                     style: TextStyle(color: Colors.white)),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFBB86FC),
+                  backgroundColor: AppColors.neonPurple,
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   textStyle: theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w600, color: Colors.white),

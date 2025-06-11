@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mood_sync/core/theme/app_colors.dart';
 
 class MoodSyncNavBar extends StatelessWidget {
   final int currentIndex;
@@ -14,11 +15,11 @@ class MoodSyncNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const backgroundColor = Color(0xFF121212);
-    const selectedColor = Color(0xFFBB86FC);
-    const unselectedColor = Color(0xFFA1A1AA);
-    const fabGradient = LinearGradient(
-      colors: [Color(0xFFBB86FC), Color(0xFFFF85B3)],
+    final backgroundColor = AppColors.background;
+    final selectedColor = AppColors.selected;
+    final unselectedColor = AppColors.unselected;
+    final fabGradient = LinearGradient(
+      colors: [AppColors.selected, AppColors.fabGradientEnd],
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
     );
@@ -34,7 +35,7 @@ class MoodSyncNavBar extends StatelessWidget {
             decoration: BoxDecoration(
               color: backgroundColor,
               border: const Border(
-                top: BorderSide(color: Color(0xFF2C2C2E), width: 1),
+                top: BorderSide(color: AppColors.divider, width: 1),
               ),
             ),
             child: Row(

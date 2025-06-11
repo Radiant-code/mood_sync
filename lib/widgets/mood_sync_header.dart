@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mood_sync/core/theme/app_colors.dart';
 
 class MoodSyncHeader extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -38,15 +39,15 @@ class MoodSyncHeader extends StatelessWidget implements PreferredSizeWidget {
                     height: 40,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
-                      gradient: const LinearGradient(
-                        colors: [Color(0xFFBB86FC), Color(0xFFFF85B3)],
+                      gradient: LinearGradient(
+                        colors: [AppColors.purple, AppColors.pink],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
                     ),
                     child: const Center(
                       child: Icon(Icons.nightlight_round,
-                          color: Color(0xFF121212), size: 26),
+                          color: AppColors.dark, size: 26),
                     ),
                   ),
                   const SizedBox(width: 12),
@@ -54,8 +55,8 @@ class MoodSyncHeader extends StatelessWidget implements PreferredSizeWidget {
                     title,
                     style: theme.textTheme.titleLarge?.copyWith(
                       foreground: Paint()
-                        ..shader = const LinearGradient(
-                          colors: [Color(0xFFBB86FC), Color(0xFFFF85B3)],
+                        ..shader = LinearGradient(
+                          colors: [AppColors.purple, AppColors.pink],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                         ).createShader(
