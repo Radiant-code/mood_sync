@@ -68,7 +68,7 @@ class CurrentStateCard extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 8),
-                          Icon(Icons.trending_up,
+                          const Icon(Icons.trending_up,
                               color: AppColors.signalGreen, size: 18),
                         ],
                       ),
@@ -84,7 +84,7 @@ class CurrentStateCard extends StatelessWidget {
                 const SizedBox(width: 8),
                 Row(
                   children: [
-                    Icon(Icons.access_time,
+                    const Icon(Icons.access_time,
                         size: 16, color: AppColors.textSecondary),
                     const SizedBox(width: 3),
                     Text(
@@ -108,18 +108,21 @@ class CurrentStateCard extends StatelessWidget {
                     width: double.infinity,
                     color: AppColors.progressBarBg,
                   ),
-                  Container(
-                    height: 8,
-                    width: MediaQuery.of(context).size.width * progress,
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          AppColors.progressHappy,
-                          AppColors.progressCalm,
-                          AppColors.progressContent,
-                        ],
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Container(
+                      height: 8,
+                      width: MediaQuery.of(context).size.width * progress,
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            AppColors.progressHappy,
+                            AppColors.progressCalm,
+                            AppColors.progressContent,
+                          ],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                        ),
                       ),
                     ),
                   ),

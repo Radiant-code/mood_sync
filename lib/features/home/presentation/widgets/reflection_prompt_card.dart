@@ -30,7 +30,7 @@ class ReflectionPromptCard extends StatelessWidget {
               height: 56,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                   colors: [
                     AppColors.neonPurple,
                     AppColors.neonPink,
