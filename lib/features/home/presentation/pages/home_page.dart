@@ -36,6 +36,12 @@ class HomePage extends StatelessWidget {
               progress: 0.7,
               supportingText:
                   "You've been maintaining a steady emotional state today",
+              emoji: '😊',
+              gradientColors: [
+                AppColors.progressHappy,
+                AppColors.progressCalm,
+                AppColors.progressGrateful,
+              ],
             ),
             GentleInsightCard(
               insightText:

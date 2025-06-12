@@ -8,6 +8,8 @@ class CurrentStateCard extends StatelessWidget {
   final String timeAgo;
   final double progress;
   final String supportingText;
+  final String emoji;
+  final List<Color> gradientColors;
 
   const CurrentStateCard({
     Key? key,
@@ -16,6 +18,8 @@ class CurrentStateCard extends StatelessWidget {
     required this.timeAgo,
     required this.progress,
     required this.supportingText,
+    required this.emoji,
+    required this.gradientColors,
   }) : super(key: key);
 
   @override
@@ -46,10 +50,10 @@ class CurrentStateCard extends StatelessWidget {
                     color: AppColors.stateContent,
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
-                      '😊',
-                      style: TextStyle(fontSize: 24),
+                      emoji,
+                      style: const TextStyle(fontSize: 24),
                     ),
                   ),
                 ),
@@ -113,13 +117,9 @@ class CurrentStateCard extends StatelessWidget {
                     child: Container(
                       height: 8,
                       width: MediaQuery.of(context).size.width * progress,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [
-                            AppColors.progressHappy,
-                            AppColors.progressCalm,
-                            AppColors.progressContent,
-                          ],
+                          colors: gradientColors,
                           begin: Alignment.centerLeft,
                           end: Alignment.centerRight,
                         ),
