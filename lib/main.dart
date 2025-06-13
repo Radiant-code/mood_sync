@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'core/routes/app_routes.dart';
 import 'core/theme/app_theme.dart';
 import 'features/home/presentation/pages/home_page.dart';
 
@@ -12,12 +13,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: 'Mood Sync',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
       home: const HomePage(),
+      routes: AppRoutes.routes,
     );
   }
 }

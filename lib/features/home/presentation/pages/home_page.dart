@@ -11,6 +11,17 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final wheelSize = size.shortestSide * 0.95; // 95% of the smallest dimension
+
+    final List<double> ringRadii = [
+      0,
+      wheelSize * 0.11, // ~100/900
+      wheelSize * 0.22, // ~200/900
+      wheelSize * 0.34, // ~310/900
+      wheelSize * 0.48, // ~430/900
+    ];
+
     return Scaffold(
       appBar: MoodSyncHeader(
         title: 'Mood Sync',
