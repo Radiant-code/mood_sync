@@ -29,7 +29,7 @@ class Emotion {
 }
 
 // Define ring radii with increasing spacing for outer rings
-const List<double> ringRadii = [0, 100, 200, 310, 430];
+const List<double> ringRadii = [0, 100, 180, 260, 340];
 
 // Define how many emotions per ring
 const List<int> emotionsPerRing = [0, 8, 16, 24, 32];

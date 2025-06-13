@@ -15,13 +15,14 @@ class EmotionWheel extends StatefulWidget {
 }
 
 class _EmotionWheelState extends State<EmotionWheel> {
-  double scale = 1.2;
+  double scale = 1.7;
   Offset position = Offset.zero;
   bool isDragging = false;
   Offset dragStart = Offset.zero;
   final List<Emotion> emotions = [];
 
-  final double canvasSize = 1000;
+  double canvasSize = 1000;
+  bool isFirstBuild = true;
 
   @override
   void didChangeDependencies() {
@@ -159,7 +160,7 @@ class WheelGuidelinesPainter extends CustomPainter {
         center,
         radius,
         Paint()
-          ..color = const Color(0xFF2C2C2E)
+          ..color = const Color(0xFF2C2C2E).withOpacity(0.2)
           ..style = PaintingStyle.stroke
           ..strokeWidth = 1,
       );
