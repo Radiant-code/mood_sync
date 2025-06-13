@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mood_sync/widgets/mood_sync_nav_bar.dart';
 import '../widgets/emotion_wheel.dart';
-import '../../data/emotion_wheel_data.dart';
 
 class EmotionPickerPage extends StatelessWidget {
   const EmotionPickerPage({Key? key}) : super(key: key);
@@ -21,6 +21,15 @@ class EmotionPickerPage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: MoodSyncNavBar(
+        currentIndex: 0,
+        onTabSelected: (index) {
+          // TODO: Handle tab navigation
+        },
+        onFabPressed: () {
+          // TODO: Handle FAB action (quick mood entry)
+        },
       ),
     );
   }
