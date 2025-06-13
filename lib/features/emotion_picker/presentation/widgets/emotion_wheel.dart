@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import '../../data/emotion_wheel_data.dart';
 import 'emotion_bubble.dart';
@@ -22,7 +21,7 @@ class _EmotionWheelState extends State<EmotionWheel> {
   Offset dragStart = Offset.zero;
   final List<Emotion> emotions = [];
 
-  final double canvasSize = 3000;
+  final double canvasSize = 1000;
 
   @override
   void didChangeDependencies() {
@@ -87,58 +86,60 @@ class _EmotionWheelState extends State<EmotionWheel> {
           transform: Matrix4.identity()
             ..translate(position.dx, position.dy)
             ..scale(scale),
-          child: SizedBox(
-            width: canvasSize,
-            height: canvasSize,
-            child: Stack(
-              children: [
-                // Wheel background
-                Positioned.fill(
-                  child: CustomPaint(
-                    painter: WheelGuidelinesPainter(),
+          child: Center(
+            child: SizedBox(
+              width: canvasSize,
+              height: canvasSize,
+              child: Stack(
+                children: [
+                  // Wheel background
+                  Positioned.fill(
+                    child: CustomPaint(
+                      painter: WheelGuidelinesPainter(),
+                    ),
                   ),
-                ),
 
-                // Center icon
-                Positioned(
-                  left: canvasSize / 2 - 48,
-                  top: canvasSize / 2 - 48,
-                  child: Container(
-                    width: 96,
-                    height: 96,
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [Color(0xFFBB86FC), Color(0xFFFF85B3)],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          blurRadius: 10,
-                          spreadRadius: 2,
+                  // Center icon
+                  Positioned(
+                    left: canvasSize / 2 - 48,
+                    top: canvasSize / 2 - 48,
+                    child: Container(
+                      width: 96,
+                      height: 96,
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                          colors: [Color(0xFFBB86FC), Color(0xFFFF85B3)],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
                         ),
-                      ],
-                    ),
-                    child: const Icon(
-                      Icons.auto_awesome,
-                      size: 48,
-                      color: Colors.white,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 10,
+                            spreadRadius: 2,
+                          ),
+                        ],
+                      ),
+                      child: const Icon(
+                        Icons.auto_awesome,
+                        size: 48,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
 
-                // Emotion bubbles
-                ...emotions.map((emotion) => Positioned(
-                      left: emotion.x - 40,
-                      top: emotion.y - 40,
-                      child: EmotionBubble(
-                        emotion: emotion,
-                        onTap: () => widget.onEmotionSelected(emotion),
-                      ),
-                    )),
-              ],
+                  // Emotion bubbles
+                  ...emotions.map((emotion) => Positioned(
+                        left: emotion.x - 32,
+                        top: emotion.y - 32,
+                        child: EmotionBubble(
+                          emotion: emotion,
+                          onTap: () => widget.onEmotionSelected(emotion),
+                        ),
+                      )),
+                ],
+              ),
             ),
           ),
         ),
@@ -158,7 +159,7 @@ class WheelGuidelinesPainter extends CustomPainter {
         center,
         radius,
         Paint()
-          ..color = const Color(0xFF2C2C2E).withOpacity(0.2)
+          ..color = const Color(0xFF2C2C2E)
           ..style = PaintingStyle.stroke
           ..strokeWidth = 1,
       );
