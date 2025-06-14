@@ -30,6 +30,7 @@ class _EmotionBubbleState extends State<EmotionBubble> {
           width: 64,
           height: 64,
           decoration: BoxDecoration(
+            color: widget.emotion.background.withOpacity(0.15),
             shape: BoxShape.circle,
             border: Border.all(
               color: widget.emotion.color,

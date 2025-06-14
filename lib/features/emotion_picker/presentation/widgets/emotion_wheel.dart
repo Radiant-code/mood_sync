@@ -49,6 +49,7 @@ class _EmotionWheelState extends State<EmotionWheel> {
         name: data['name'] as String,
         sector: data['sector'] as String,
         color: sectorColors[data['sector'] as String]!,
+        background: sectorColors[data['sector'] as String]!,
         textColor: Colors.white,
         x: position.dx,
         y: position.dy,

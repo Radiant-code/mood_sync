@@ -7,6 +7,7 @@ class Emotion {
   final String name;
   final String sector;
   final Color color;
+  final Color background;
   final Color textColor;
   final double x;
   final double y;
@@ -19,6 +20,7 @@ class Emotion {
     required this.name,
     required this.sector,
     required this.color,
+    required this.background,
     required this.textColor,
     required this.x,
     required this.y,
