@@ -21,13 +21,27 @@ class _EmotionWheelState extends State<EmotionWheel> {
   Offset dragStart = Offset.zero;
   final List<Emotion> emotions = [];
 
-  double canvasSize = 1000;
+  double canvasSize = 1364;
   bool isFirstBuild = true;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _initializeEmotions();
+  }
+
+  void _centerWheel() {
+    final screenSize = MediaQuery.of(context).size;
+    final screenCenter = Offset(screenSize.width / 2, screenSize.height / 2);
+
+    setState(() {
+      // With scale applied first, translation is also scaled
+      // So we need to translate by the unscaled amount to center the wheel
+      position = Offset(
+        (screenCenter.dx - canvasSize / 2) / scale,
+        (screenCenter.dy - canvasSize / 2) / scale - 120,
+      );
+    });
   }
 
   void _initializeEmotions() {
@@ -56,6 +70,13 @@ class _EmotionWheelState extends State<EmotionWheel> {
         definition: '',
         intensity: data['ring'] as int,
       ));
+    }
+
+    // Center the wheel immediately after emotions are initialized
+    if (isFirstBuild && emotions.isNotEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _centerWheel();
+      });
     }
   }
 
@@ -86,8 +107,8 @@ class _EmotionWheelState extends State<EmotionWheel> {
         maxHeight: double.infinity,
         child: Transform(
           transform: Matrix4.identity()
-            ..translate(position.dx, position.dy)
-            ..scale(scale),
+            ..scale(scale)
+            ..translate(position.dx, position.dy),
           child: Center(
             child: SizedBox(
               width: canvasSize,
