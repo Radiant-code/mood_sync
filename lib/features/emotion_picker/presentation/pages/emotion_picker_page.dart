@@ -9,8 +9,9 @@ import '../widgets/emotion_bubble.dart';
 class EmotionPickerPage extends StatelessWidget {
   const EmotionPickerPage({super.key});
 
-  static const double _ringSpacing = 120.0;
-  static const double _bubbleSize = 60.0;
+  static const double _bubbleSize = 80.0;
+  static const double _ringSpacing = _bubbleSize + 5.0;
+  static const double _centerButtonSize = 100.0;
 
   int _ringForIntensity(int intensity) {
     if (intensity >= 5) return 1;
@@ -42,7 +43,7 @@ class EmotionPickerPage extends StatelessWidget {
     final sectors = mockEmotions.map((e) => e.sector).toSet().toList();
     sectors.sort();
     const ringCount = 4;
-    final double mapRadius = _ringSpacing * ringCount + 80;
+    final double mapRadius = _ringSpacing * ringCount + _bubbleSize;
     final widgets = <Widget>[];
     final wedge = 2 * pi / sectors.length;
 
@@ -69,6 +70,7 @@ class EmotionPickerPage extends StatelessWidget {
             child: EmotionBubble(
               emotion: emotion,
               color: _colorForSector(emotion.sector),
+              size: _bubbleSize,
               onTap: () => _showEmotion(context, emotion),
             ),
           ));
@@ -77,8 +79,8 @@ class EmotionPickerPage extends StatelessWidget {
     }
 
     widgets.add(Positioned(
-      left: mapRadius - 40,
-      top: mapRadius - 40,
+      left: mapRadius - _centerButtonSize / 2,
+      top: mapRadius - _centerButtonSize / 2,
       child: CenterGlowButton(
         onTap: () {},
       ),

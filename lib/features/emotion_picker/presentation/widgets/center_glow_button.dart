@@ -10,8 +10,8 @@ class CenterGlowButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 80,
-        height: 80,
+        width: 100,
+        height: 100,
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
           gradient: RadialGradient(

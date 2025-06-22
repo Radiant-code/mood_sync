@@ -4,11 +4,13 @@ import '../../../../models/emotion.dart';
 class EmotionBubble extends StatelessWidget {
   final Emotion emotion;
   final Color color;
+  final double size;
   final VoidCallback onTap;
   const EmotionBubble({
     Key? key,
     required this.emotion,
     required this.color,
+    required this.size,
     required this.onTap,
   }) : super(key: key);
 
@@ -17,6 +19,8 @@ class EmotionBubble extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        width: size,
+        height: size,
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: color,
