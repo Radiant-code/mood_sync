@@ -9,7 +9,7 @@ import '../widgets/emotion_bubble.dart';
 class EmotionPickerPage extends StatelessWidget {
   const EmotionPickerPage({super.key});
 
-  static const double _bubbleSize = 80.0;
+  static const double _bubbleSize = 150.0;
   static const double _bubbleGap = 4.0;
   static const double _centerButtonSize = 100.0;
 
@@ -17,7 +17,8 @@ class EmotionPickerPage extends StatelessWidget {
     if (intensity >= 5) return 1;
     if (intensity == 4) return 2;
     if (intensity == 3) return 3;
-    return 4;
+    if (intensity == 2) return 4;
+    return 5;
   }
 
   Color _colorForSector(String sector) {
@@ -41,7 +42,7 @@ class EmotionPickerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sectors = mockEmotions.map((e) => e.sector).toSet().toList()..sort();
-    const ringCount = 4;
+    const ringCount = 5;
 
     // Organize emotions by sector and ring
     final Map<String, Map<int, List<Emotion>>> data = {};
