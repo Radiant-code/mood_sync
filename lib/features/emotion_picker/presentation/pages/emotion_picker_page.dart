@@ -9,17 +9,23 @@ import '../widgets/emotion_bubble.dart';
 class EmotionPickerPage extends StatelessWidget {
   const EmotionPickerPage({super.key});
 
-  static const double _bubbleSize = 150.0;
-  static const double _bubbleGap = 4.0;
-  static const double _centerButtonSize = 100.0;
-
-  int _ringForIntensity(int intensity) {
-    if (intensity >= 5) return 1;
-    if (intensity == 4) return 2;
-    if (intensity == 3) return 3;
     if (intensity == 2) return 4;
     return 5;
-  }
+    const ringCount = 5;
+    // Determine radius for each ring using hexagonal packing
+    final double ringSpacing = (_bubbleSize + _bubbleGap) * sqrt(3) / 2;
+    final double startRadius = _centerButtonSize / 2 + _bubbleSize / 2 + _bubbleGap;
+    for (var ring = 1; ring <= ringCount; ring++) {
+      radii[ring] = startRadius + ringSpacing * (ring - 1);
+    }
+
+    // Calculate angular step per ring so bubbles are evenly spaced
+    final List<double> steps = List.filled(ringCount + 1, wedge);
+      maxCount = max(maxCount, 1);
+      steps[ring] = wedge / maxCount;
+        final step = steps[ring];
+        final double offsetAngle = (ring % 2 == 0) ? step / 2 : 0;
+          final angle = startAngle + offsetAngle + step * (i + 0.5);
 
   Color _colorForSector(String sector) {
     switch (sector) {
