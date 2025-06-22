@@ -11,24 +11,20 @@ class EmotionPickerPage extends StatelessWidget {
 
   static const double _bubbleSize = 96.0;
   static const double _bubbleGap = 2.0;
-    const ringCount = 5;
-    // Determine radius for each ring so bubbles nearly touch
-    final double ringSpacing = _bubbleSize + _bubbleGap;
-    final double startRadius = _centerButtonSize / 2 + _bubbleSize / 2 + _bubbleGap;
-    for (var ring = 1; ring <= ringCount; ring++) {
-      radii[ring] = startRadius + ringSpacing * (ring - 1);
-    }
-        final step = wedge / count;
-      case 'trust':
-        return Colors.green.shade300;
-      case 'fear':
-        return Colors.blue.shade300;
-      case 'sadness':
-        return Colors.indigo.shade300;
-      case 'anger':
-        return Colors.red.shade300;
-      case 'surprise':
-      default:
+  static const Map<String, MaterialColor> _sectorColors = {
+    'joy': Colors.yellow,
+    'trust': Colors.green,
+    'fear': Colors.blue,
+    'sadness': Colors.indigo,
+    'anger': Colors.red,
+    'surprise': Colors.purple,
+  };
+
+    final base = _sectorColors[sector] ?? Colors.purple;
+    return base.shade300;
+    // Hexagonal packing radius between rings
+    final double ringSpacing = _bubbleSize * sqrt(3) / 2 + _bubbleGap;
+    final double mapRadius = radii[ringCount] + _bubbleSize / 2 + _bubbleGap;
         return Colors.purple.shade300;
     }
   }
