@@ -4,11 +4,56 @@ import 'package:mood_sync/widgets/mood_sync_nav_bar.dart';
 import 'package:mood_sync/widgets/mood_sync_header.dart';
 import 'dart:math' as Math;
 
-class EmotionPickerPage extends StatelessWidget {
+class EmotionPickerPage extends StatefulWidget {
   const EmotionPickerPage({super.key});
 
   @override
+  State<EmotionPickerPage> createState() => _EmotionPickerPageState();
+}
+
+class _EmotionPickerPageState extends State<EmotionPickerPage> {
+  late ScrollController _horizontalController;
+  late ScrollController _verticalController;
+
+  @override
+  void initState() {
+    super.initState();
+    _horizontalController = ScrollController();
+    _verticalController = ScrollController();
+
+    // Center the content after the widget is built
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _centerContent();
+    });
+  }
+
+  void _centerContent() {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final double visibleHeight = screenHeight;
+
+    // Calculate the offset to center the content in the visible area
+    final horizontalOffset = (screenWidth * 2 - screenWidth) / 2;
+    final verticalOffset = (visibleHeight) / 2 - visibleHeight / 2;
+
+    _horizontalController.jumpTo(horizontalOffset);
+    _verticalController.jumpTo(verticalOffset);
+  }
+
+  @override
+  void dispose() {
+    _horizontalController.dispose();
+    _verticalController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final double visibleHeight = screenHeight;
+    final double pickerSize = 240;
+
     return Scaffold(
       appBar: MoodSyncHeader(
         title: 'How are you feeling?',
@@ -21,16 +66,21 @@ class EmotionPickerPage extends StatelessWidget {
           // TODO: Implement notification navigation
         },
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        child: SingleChildScrollView(
+          controller: _horizontalController,
+          scrollDirection: Axis.horizontal,
+          child: SingleChildScrollView(
+            controller: _verticalController,
+            child: Container(
+              width: screenWidth * 2,
+              height: visibleHeight + pickerSize,
               child: Center(
-                child: SizedBox(
-                  width: 240, // enough for 2 rings of 80 radius
-                  height: 240,
+                child: Container(
+                  width: pickerSize,
+                  height: pickerSize,
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
@@ -87,11 +137,7 @@ class EmotionPickerPage extends StatelessWidget {
                 ),
               ),
             ),
-            // TODO: Add emotion grid/quadrant interface
-            // TODO: Add intensity slider
-            // TODO: Add tags input
-            // TODO: Add save button
-          ],
+          ),
         ),
       ),
       bottomNavigationBar: MoodSyncNavBar(
