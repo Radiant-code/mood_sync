@@ -20,11 +20,42 @@ class EmotionPickerPage extends StatelessWidget {
           // TODO: Implement notification navigation
         },
       ),
-      body: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Expanded(
+              child: Center(
+                child: Container(
+                  width: 120,
+                  height: 120,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        AppColors.neonPurple,
+                        AppColors.neonPink,
+                      ],
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.neonPurple.withOpacity(0.3),
+                        blurRadius: 20,
+                        spreadRadius: 5,
+                      ),
+                    ],
+                  ),
+                  child: const Icon(
+                    Icons.psychology,
+                    size: 60,
+                    color: AppColors.textPrimary,
+                  ),
+                ),
+              ),
+            ),
             // TODO: Add emotion grid/quadrant interface
             // TODO: Add intensity slider
             // TODO: Add tags input
