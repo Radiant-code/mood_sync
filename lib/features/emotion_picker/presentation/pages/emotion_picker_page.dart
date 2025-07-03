@@ -12,47 +12,16 @@ class EmotionPickerPage extends StatefulWidget {
 }
 
 class _EmotionPickerPageState extends State<EmotionPickerPage> {
-  late ScrollController _horizontalController;
-  late ScrollController _verticalController;
-
-  @override
-  void initState() {
-    super.initState();
-    _horizontalController = ScrollController();
-    _verticalController = ScrollController();
-
-    // Center the content after the widget is built
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _centerContent();
-    });
-  }
-
-  void _centerContent() {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
-    final double visibleHeight = screenHeight;
-
-    // Calculate the offset to center the content in the visible area
-    final horizontalOffset = (screenWidth * 2 - screenWidth) / 2;
-    final verticalOffset = (visibleHeight) / 2 - visibleHeight / 2;
-
-    _horizontalController.jumpTo(horizontalOffset);
-    _verticalController.jumpTo(verticalOffset);
-  }
-
-  @override
-  void dispose() {
-    _horizontalController.dispose();
-    _verticalController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    final double visibleHeight = screenHeight;
-    final double pickerSize = 240;
+    const double pickerSize = 240;
+
+    const double appBarHeight = kToolbarHeight + 70;
+    const double bottomNavBarHeight = 70;
+    final double availableHeight =
+        screenHeight - appBarHeight - bottomNavBarHeight;
 
     return Scaffold(
       appBar: MoodSyncHeader(
@@ -66,25 +35,27 @@ class _EmotionPickerPageState extends State<EmotionPickerPage> {
           // TODO: Implement notification navigation
         },
       ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: SingleChildScrollView(
-          controller: _horizontalController,
-          scrollDirection: Axis.horizontal,
-          child: SingleChildScrollView(
-            controller: _verticalController,
-            child: Container(
-              width: screenWidth * 2,
-              height: visibleHeight + pickerSize,
-              child: Center(
-                child: Container(
+      body: InteractiveViewer(
+        constrained: false,
+        boundaryMargin: const EdgeInsets.all(1000), // Allows panning freely
+        minScale: 1.0,
+        maxScale: 1.0, // Lock zooming, or set to >1 to allow pinch zoom
+        child: SizedBox(
+          width: screenWidth * 2,
+          height: availableHeight * 2,
+          child: Stack(
+            children: [
+              // Position the emotion picker at the center of the available area
+              Positioned(
+                left: screenWidth / 2 - pickerSize / 2,
+                top: availableHeight / 2 - pickerSize / 2,
+                child: SizedBox(
                   width: pickerSize,
                   height: pickerSize,
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
-                      // Central circle with icon
+                      // Center glow bubble
                       Container(
                         width: 80,
                         height: 80,
@@ -112,14 +83,15 @@ class _EmotionPickerPageState extends State<EmotionPickerPage> {
                           color: AppColors.textPrimary,
                         ),
                       ),
-                      // 6 surrounding circles
+
+                      // 6 outer bubbles
                       ...List.generate(6, (i) {
                         final double angle = i * 60 * Math.pi / 180;
-                        const double r = 80; // distance from center
+                        const double r = 80;
                         final double x = r * Math.cos(angle);
                         final double y = r * Math.sin(angle);
                         return Positioned(
-                          left: 120 + x - 40, // center + offset - radius
+                          left: 120 + x - 40,
                           top: 120 + y - 40,
                           child: Container(
                             width: 80,
@@ -136,7 +108,7 @@ class _EmotionPickerPageState extends State<EmotionPickerPage> {
                   ),
                 ),
               ),
-            ),
+            ],
           ),
         ),
       ),
