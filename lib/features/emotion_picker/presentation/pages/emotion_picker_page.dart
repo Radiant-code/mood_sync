@@ -32,7 +32,7 @@ class EmotionPickerPage extends StatelessWidget {
                   height: 120,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    gradient: LinearGradient(
+                    gradient: const LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
@@ -64,7 +64,7 @@ class EmotionPickerPage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: MoodSyncNavBar(
-        currentIndex: 1, // Assuming emotion picker is tab 1
+        currentIndex: -1, // Assuming emotion picker is tab 1
         onTabSelected: (index) {
           // TODO: Handle tab navigation
         },
