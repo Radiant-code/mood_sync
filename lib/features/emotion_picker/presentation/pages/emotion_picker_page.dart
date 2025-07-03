@@ -37,18 +37,18 @@ class _EmotionPickerPageState extends State<EmotionPickerPage> {
       ),
       body: InteractiveViewer(
         constrained: false,
-        boundaryMargin: const EdgeInsets.all(1000), // Allows panning freely
+        boundaryMargin: EdgeInsets.zero,
         minScale: 1.0,
-        maxScale: 1.0, // Lock zooming, or set to >1 to allow pinch zoom
+        maxScale: 1.0,
         child: SizedBox(
           width: screenWidth * 2,
           height: availableHeight * 2,
           child: Stack(
             children: [
-              // Position the emotion picker at the center of the available area
+              // Position the emotion picker at the center of the canvas
               Positioned(
-                left: screenWidth / 2 - pickerSize / 2,
-                top: availableHeight / 2 - pickerSize / 2,
+                left: screenWidth - pickerSize / 2,
+                top: availableHeight - pickerSize / 2,
                 child: SizedBox(
                   width: pickerSize,
                   height: pickerSize,
