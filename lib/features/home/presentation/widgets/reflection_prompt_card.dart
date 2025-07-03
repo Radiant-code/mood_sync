@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mood_sync/core/theme/app_colors.dart';
+import 'package:mood_sync/features/emotion_picker/presentation/pages/emotion_picker_page.dart';
 
 /// A card widget prompting the user to reflect on their current feelings.
 ///
@@ -62,7 +63,12 @@ class ReflectionPromptCard extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  // TODO: Implement reflection logic
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const EmotionPickerPage(),
+                    ),
+                  );
                 },
                 icon: const Icon(Icons.add, color: Colors.white),
                 label: const Text('Reflect Now',
