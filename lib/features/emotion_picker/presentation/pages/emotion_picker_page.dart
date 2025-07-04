@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mood_sync/core/theme/app_colors.dart';
 import 'package:mood_sync/widgets/mood_sync_nav_bar.dart';
 import 'package:mood_sync/widgets/mood_sync_header.dart';
-import 'dart:math' as Math;
+import 'dart:math' as math;
 
 class EmotionPickerPage extends StatelessWidget {
   const EmotionPickerPage({super.key});
@@ -25,32 +25,32 @@ class EmotionPickerPage extends StatelessWidget {
           // TODO: Implement notification navigation
         },
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              child: Center(
-                child: SizedBox(
-                  width: pickerSize,
-                  height: pickerSize,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      _buildCenterCircle(),
-                      ..._buildOuterRing(6, 80),
-                    ],
-                  ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Center(
+              child: SizedBox(
+                width: pickerSize,
+                height: pickerSize,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    ..._buildOuterRing(6, circleSize),
+                    Align(
+                      alignment: Alignment.center,
+                      child: _buildCenterCircle(),
+                    ),
+                  ],
                 ),
               ),
             ),
-            // TODO: Add emotion grid/quadrant interface
-            // TODO: Add intensity slider
-            // TODO: Add tags input
-            // TODO: Add save button
-          ],
-        ),
+          ),
+          // TODO: Add emotion grid/quadrant interface
+          // TODO: Add intensity slider
+          // TODO: Add tags input
+          // TODO: Add save button
+        ],
       ),
       bottomNavigationBar: MoodSyncNavBar(
         currentIndex: -1, // Assuming emotion picker is tab 1
@@ -96,9 +96,9 @@ class EmotionPickerPage extends StatelessWidget {
 
   List<Widget> _buildOuterRing(int count, double radius) {
     return List.generate(count, (i) {
-      final angle = i * 2 * Math.pi / count;
-      final x = radius * Math.cos(angle);
-      final y = radius * Math.sin(angle);
+      final angle = i * 2 * math.pi / count;
+      final x = radius * math.cos(angle);
+      final y = radius * math.sin(angle);
 
       return Positioned(
         left: center + x - circleSize / 2,
