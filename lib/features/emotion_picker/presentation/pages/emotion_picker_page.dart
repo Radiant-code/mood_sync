@@ -7,14 +7,20 @@ import 'dart:math' as math;
 class EmotionPickerPage extends StatelessWidget {
   const EmotionPickerPage({super.key});
 
-  static const double pickerSize = 240;
-  static const double circleSize = 80;
-  static const double center = pickerSize / 2;
+  static const double circleSize = 120;
+
+  static double pickerSizeForRings(int rings, double circleSize) {
+    return circleSize * (2 * rings + 1);
+  }
 
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
+
+    const int rings = 4;
+    final double pickerSize = pickerSizeForRings(rings, circleSize);
+    final double center = pickerSize / 2;
 
     return Scaffold(
       appBar: MoodSyncHeader(
@@ -32,16 +38,16 @@ class EmotionPickerPage extends StatelessWidget {
         constrained: false,
         scaleEnabled: false,
         boundaryMargin: EdgeInsets.only(
-          top: 400,
-          bottom: 100,
+          top: screenHeight - 128 - 86,
+          bottom: screenHeight - 128 * 4,
           left: 150,
           right: 150,
         ),
         minScale: 1.0,
         maxScale: 1.0,
         child: SizedBox(
-          width: screenWidth,
-          height: screenHeight,
+          width: pickerSize,
+          height: pickerSize,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -55,7 +61,7 @@ class EmotionPickerPage extends StatelessWidget {
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          ..._buildHexPackedCircles(1, circleSize),
+                          ..._buildHexPackedCircles(rings, circleSize, center),
                           Align(
                             alignment: Alignment.center,
                             child: _buildCenterCircle(),
@@ -118,7 +124,7 @@ class EmotionPickerPage extends StatelessWidget {
     final double dx = diameter;
     final double dy = math.sqrt(3) * radius;
 
-    centers.add(Offset(0, 0));
+    centers.add(const Offset(0, 0));
 
     for (int r = 1; r <= rings; r++) {
       for (int side = 0; side < 6; side++) {
@@ -140,12 +146,13 @@ class EmotionPickerPage extends StatelessWidget {
     return centers;
   }
 
-  List<Widget> _buildHexPackedCircles(int rings, double circleSize) {
+  List<Widget> _buildHexPackedCircles(
+      int rings, double circleSize, double center) {
     final centers = _generateHexPackedCenters(rings, circleSize);
     return centers.map((offset) {
       return Positioned(
-        left: EmotionPickerPage.center + offset.dx - circleSize / 2,
-        top: EmotionPickerPage.center + offset.dy - circleSize / 2,
+        left: center + offset.dx - circleSize / 2,
+        top: center + offset.dy - circleSize / 2,
         child: Container(
           width: circleSize,
           height: circleSize,
