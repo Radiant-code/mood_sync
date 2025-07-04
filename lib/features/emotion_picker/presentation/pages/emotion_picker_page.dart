@@ -31,7 +31,7 @@ class EmotionPickerPage extends StatelessWidget {
       body: InteractiveViewer(
         constrained: false,
         scaleEnabled: false,
-        boundaryMargin: EdgeInsets.zero,
+        boundaryMargin: const EdgeInsets.all(150),
         minScale: 1.0,
         maxScale: 1.0,
         child: SizedBox(
