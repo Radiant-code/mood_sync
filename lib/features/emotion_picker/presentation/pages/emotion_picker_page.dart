@@ -38,41 +38,31 @@ class EmotionPickerPage extends StatelessWidget {
         constrained: false,
         scaleEnabled: false,
         boundaryMargin: EdgeInsets.only(
-          top: screenHeight - 128 - 86,
-          bottom: screenHeight - 128 * 4,
-          left: 150,
-          right: 150,
+          // Account for header height (128px) + nav bar height (86px) + some padding
+          top: 128 + 86 + 20,
+          // Account for nav bar height + FAB extension (24px) + some padding
+          bottom: 86 + 24 + 20,
+          // Horizontal margins based on screen width for better responsiveness
+          left: screenWidth * 0.1,
+          right: screenWidth * 0.1,
         ),
         minScale: 1.0,
         maxScale: 1.0,
-        child: SizedBox(
-          width: pickerSize,
-          height: pickerSize,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Center(
-                  child: Transform.translate(
-                    offset: const Offset(0, -128),
-                    child: SizedBox(
-                      width: pickerSize,
-                      height: pickerSize,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          ..._buildHexPackedCircles(rings, circleSize, center),
-                          Align(
-                            alignment: Alignment.center,
-                            child: _buildCenterCircle(),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+        child: Transform.translate(
+          offset: const Offset(0, -128),
+          child: SizedBox(
+            width: pickerSize,
+            height: pickerSize,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                ..._buildHexPackedCircles(rings, circleSize, center),
+                Align(
+                  alignment: Alignment.center,
+                  child: _buildCenterCircle(),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
