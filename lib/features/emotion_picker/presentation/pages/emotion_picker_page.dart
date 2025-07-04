@@ -48,14 +48,14 @@ class EmotionPickerPage extends StatelessWidget {
               Expanded(
                 child: Center(
                   child: Transform.translate(
-                    offset: const Offset(0, -128), // Shift up by 128 pixels
+                    offset: const Offset(0, -128),
                     child: SizedBox(
                       width: pickerSize,
                       height: pickerSize,
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          ..._buildOuterRing(6, circleSize),
+                          ..._buildHexPackedCircles(1, circleSize),
                           Align(
                             alignment: Alignment.center,
                             child: _buildCenterCircle(),
@@ -112,15 +112,40 @@ class EmotionPickerPage extends StatelessWidget {
     );
   }
 
-  List<Widget> _buildOuterRing(int count, double radius) {
-    return List.generate(count, (i) {
-      final angle = i * 2 * math.pi / count;
-      final x = radius * math.cos(angle);
-      final y = radius * math.sin(angle);
+  List<Offset> _generateHexPackedCenters(int rings, double diameter) {
+    final List<Offset> centers = [];
+    final double radius = diameter / 2;
+    final double dx = diameter;
+    final double dy = math.sqrt(3) * radius;
 
+    centers.add(Offset(0, 0));
+
+    for (int r = 1; r <= rings; r++) {
+      for (int side = 0; side < 6; side++) {
+        double angle = math.pi / 3 * side;
+        double startX = r * dx * math.cos(angle);
+        double startY = r * dx * math.sin(angle);
+
+        double stepAngle = angle + math.pi / 3;
+        double stepX = dx * math.cos(stepAngle);
+        double stepY = dx * math.sin(stepAngle);
+
+        for (int i = 0; i < r; i++) {
+          double x = startX - i * stepX;
+          double y = startY - i * stepY;
+          centers.add(Offset(x, y));
+        }
+      }
+    }
+    return centers;
+  }
+
+  List<Widget> _buildHexPackedCircles(int rings, double circleSize) {
+    final centers = _generateHexPackedCenters(rings, circleSize);
+    return centers.map((offset) {
       return Positioned(
-        left: center + x - circleSize / 2,
-        top: center + y - circleSize / 2,
+        left: EmotionPickerPage.center + offset.dx - circleSize / 2,
+        top: EmotionPickerPage.center + offset.dy - circleSize / 2,
         child: Container(
           width: circleSize,
           height: circleSize,
@@ -131,6 +156,6 @@ class EmotionPickerPage extends StatelessWidget {
           ),
         ),
       );
-    });
+    }).toList();
   }
 }
