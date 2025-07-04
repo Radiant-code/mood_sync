@@ -31,7 +31,12 @@ class EmotionPickerPage extends StatelessWidget {
       body: InteractiveViewer(
         constrained: false,
         scaleEnabled: false,
-        boundaryMargin: const EdgeInsets.all(150),
+        boundaryMargin: EdgeInsets.only(
+          top: 400,
+          bottom: 100,
+          left: 150,
+          right: 150,
+        ),
         minScale: 1.0,
         maxScale: 1.0,
         child: SizedBox(
@@ -42,18 +47,21 @@ class EmotionPickerPage extends StatelessWidget {
             children: [
               Expanded(
                 child: Center(
-                  child: SizedBox(
-                    width: pickerSize,
-                    height: pickerSize,
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        ..._buildOuterRing(6, circleSize),
-                        Align(
-                          alignment: Alignment.center,
-                          child: _buildCenterCircle(),
-                        ),
-                      ],
+                  child: Transform.translate(
+                    offset: const Offset(0, -128), // Shift up by 128 pixels
+                    child: SizedBox(
+                      width: pickerSize,
+                      height: pickerSize,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          ..._buildOuterRing(6, circleSize),
+                          Align(
+                            alignment: Alignment.center,
+                            child: _buildCenterCircle(),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
