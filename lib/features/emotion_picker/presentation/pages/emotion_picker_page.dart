@@ -13,6 +13,9 @@ class EmotionPickerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: MoodSyncHeader(
         title: 'How are you feeling?',
@@ -25,32 +28,39 @@ class EmotionPickerPage extends StatelessWidget {
           // TODO: Implement notification navigation
         },
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            child: Center(
-              child: SizedBox(
-                width: pickerSize,
-                height: pickerSize,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    ..._buildOuterRing(6, circleSize),
-                    Align(
+      body: InteractiveViewer(
+        constrained: false,
+        scaleEnabled: false,
+        boundaryMargin: EdgeInsets.zero,
+        minScale: 1.0,
+        maxScale: 1.0,
+        child: SizedBox(
+          width: screenWidth,
+          height: screenHeight,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Center(
+                  child: SizedBox(
+                    width: pickerSize,
+                    height: pickerSize,
+                    child: Stack(
                       alignment: Alignment.center,
-                      child: _buildCenterCircle(),
+                      children: [
+                        ..._buildOuterRing(6, circleSize),
+                        Align(
+                          alignment: Alignment.center,
+                          child: _buildCenterCircle(),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
-          // TODO: Add emotion grid/quadrant interface
-          // TODO: Add intensity slider
-          // TODO: Add tags input
-          // TODO: Add save button
-        ],
+        ),
       ),
       bottomNavigationBar: MoodSyncNavBar(
         currentIndex: -1, // Assuming emotion picker is tab 1
