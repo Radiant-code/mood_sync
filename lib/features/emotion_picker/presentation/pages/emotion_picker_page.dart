@@ -38,31 +38,23 @@ class EmotionPickerPage extends StatelessWidget {
         constrained: false,
         scaleEnabled: false,
         boundaryMargin: EdgeInsets.only(
-          // Account for header height (128px) + nav bar height (86px) + some padding
-          top: 128 + 86 + 20,
-          // Account for nav bar height + FAB extension (24px) + some padding
-          bottom: 86 + 24 + 20,
-          // Horizontal margins based on screen width for better responsiveness
-          left: screenWidth * 0.1,
-          right: screenWidth * 0.1,
+          left: screenWidth * 0.2,
+          right: screenWidth * 0.2,
         ),
         minScale: 1.0,
         maxScale: 1.0,
-        child: Transform.translate(
-          offset: const Offset(0, -128),
-          child: SizedBox(
-            width: pickerSize,
-            height: pickerSize,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                ..._buildHexPackedCircles(rings, circleSize, center),
-                Align(
-                  alignment: Alignment.center,
-                  child: _buildCenterCircle(),
-                ),
-              ],
-            ),
+        child: SizedBox(
+          width: pickerSize,
+          height: pickerSize,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              ..._buildHexPackedCircles(rings, circleSize, center),
+              Align(
+                alignment: Alignment.center,
+                child: _buildCenterCircle(),
+              ),
+            ],
           ),
         ),
       ),
