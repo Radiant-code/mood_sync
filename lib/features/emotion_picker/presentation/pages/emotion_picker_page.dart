@@ -24,8 +24,6 @@ class EmotionPickerPage extends StatelessWidget {
     final double pickerSize = pickerSizeForRings(rings, circleSize);
     final double center = pickerSize / 2;
 
-    final double initialX = (screenWidth - pickerSize) / 2;
-    final double initialY = (screenHeight - pickerSize) / 2;
     _transformController.value = Matrix4.identity()
       ..translate(-center + screenWidth / 2, -center + screenHeight / 2 - 128);
 
@@ -110,9 +108,7 @@ class EmotionPickerPage extends StatelessWidget {
 
   List<Offset> _generateHexPackedCenters(int rings, double diameter) {
     final List<Offset> centers = [];
-    final double radius = diameter / 2;
     final double dx = diameter;
-    final double dy = math.sqrt(3) * radius;
 
     centers.add(const Offset(0, 0));
 
