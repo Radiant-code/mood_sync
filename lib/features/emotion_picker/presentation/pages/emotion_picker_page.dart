@@ -5,9 +5,11 @@ import 'package:mood_sync/widgets/mood_sync_header.dart';
 import 'dart:math' as math;
 
 class EmotionPickerPage extends StatelessWidget {
-  const EmotionPickerPage({super.key});
+  EmotionPickerPage({super.key});
 
   static const double circleSize = 120;
+  final TransformationController _transformController =
+      TransformationController();
 
   static double pickerSizeForRings(int rings, double circleSize) {
     return circleSize * (2 * rings + 1);
@@ -21,6 +23,11 @@ class EmotionPickerPage extends StatelessWidget {
     const int rings = 4;
     final double pickerSize = pickerSizeForRings(rings, circleSize);
     final double center = pickerSize / 2;
+
+    final double initialX = (screenWidth - pickerSize) / 2;
+    final double initialY = (screenHeight - pickerSize) / 2;
+    _transformController.value = Matrix4.identity()
+      ..translate(-center + screenWidth / 2, -center + screenHeight / 2 - 128);
 
     return Scaffold(
       appBar: MoodSyncHeader(
@@ -37,6 +44,7 @@ class EmotionPickerPage extends StatelessWidget {
       body: InteractiveViewer(
         constrained: false,
         scaleEnabled: false,
+        transformationController: _transformController,
         boundaryMargin: EdgeInsets.only(
           left: screenWidth * 0.2,
           right: screenWidth * 0.2,

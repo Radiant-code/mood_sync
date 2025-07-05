@@ -66,7 +66,7 @@ class ReflectionPromptCard extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const EmotionPickerPage(),
+                      builder: (context) => EmotionPickerPage(),
                     ),
                   );
                 },
