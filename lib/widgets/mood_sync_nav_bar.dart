@@ -7,18 +7,18 @@ class MoodSyncNavBar extends StatelessWidget {
   final VoidCallback onFabPressed;
 
   const MoodSyncNavBar({
-    Key? key,
+    super.key,
     this.currentIndex = 0,
     required this.onTabSelected,
     required this.onFabPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = AppColors.background;
-    final selectedColor = AppColors.selected;
-    final unselectedColor = AppColors.unselected;
-    final fabGradient = LinearGradient(
+    const backgroundColor = AppColors.background;
+    const selectedColor = AppColors.selected;
+    const unselectedColor = AppColors.unselected;
+    const fabGradient = LinearGradient(
       colors: [AppColors.selected, AppColors.fabGradientEnd],
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
@@ -32,9 +32,9 @@ class MoodSyncNavBar extends StatelessWidget {
         children: [
           Container(
             height: 70,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: backgroundColor,
-              border: const Border(
+              border: Border(
                 top: BorderSide(color: AppColors.divider, width: 1),
               ),
             ),
@@ -91,7 +91,7 @@ class MoodSyncNavBar extends StatelessWidget {
                     BoxShadow(
                       color: selectedColor.withOpacity(0.4),
                       blurRadius: 16,
-                      offset: Offset(0, 4),
+                      offset: const Offset(0, 4),
                     ),
                   ],
                 ),
